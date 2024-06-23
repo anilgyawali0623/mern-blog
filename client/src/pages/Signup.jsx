@@ -30,7 +30,7 @@ function Signup() {
       }
       setLoading(false);
        if(res.ok){
-        navigate('/sign-in')
+        navigate('/sign-inylk')
        }
     } catch (error) {
       setErrorMessage(error.message);
