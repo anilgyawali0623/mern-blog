@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInFailure, signInSuccess, signInStart } from "../user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import OAuth from "../components/OAuth";
 function Signin() {
   const [formData, setFormData] = useState({});
   const { loading, error: errorMessage } = useSelector((state) => state.user);
@@ -17,7 +18,7 @@ function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return dispatch(signInFailure("please fill all the fields"))
+      return dispatch(signInFailure("please fill abkjbolv,cmll the fields"))
     }
     try {
       dispatch(signInStart());
@@ -92,6 +93,7 @@ function Signin() {
                 "Sign In"
               )}
             </Button>
+             <OAuth/>
           </form>
           <div className="mt-5 flex gap-2 text-sm">
             <span> dont have an account?</span>

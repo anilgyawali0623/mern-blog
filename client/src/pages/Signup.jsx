@@ -1,11 +1,12 @@
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import OAuth from "../components/OAuth";
 function Signup() {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
- const navigate= useNavigate()
+  const navigate = useNavigate();
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
     console.log(formData);
@@ -14,7 +15,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.username || !formData.email || !formData.password) {
-      return setErrorMessage("please fill out all fields");
+      return setErrorMessage("please fill fasgout all fields");
     }
     try {
       setLoading(true);
@@ -29,9 +30,9 @@ function Signup() {
         return setErrorMessage(data.message);
       }
       setLoading(false);
-       if(res.ok){
-        navigate('/sign-in')
-       }
+      if (res.ok) {
+        navigate("/sign-in");
+      }
     } catch (error) {
       setErrorMessage(error.message);
       setLoading(false);
@@ -86,16 +87,21 @@ function Signup() {
                 onChange={handleChange}
               />
             </div>
-            <Button gradientDuoTone="purpleToPink" type="submit" disabled={loading}>
- {
-  loading ?(
-    <>
-     <Spinner size='sm'/>
-     <span>loading...</span>
-    </>
-  ): 'Sign Up'
- }
+            <Button
+              gradientDuoTone="purpleToPink"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Spinner size="sm" />
+                  <span>loading...</span>
+                </>
+              ) : (
+                "Sign Up"
+              )}
             </Button>
+            <OAuth />
           </form>
           <div className="mt-5 flex gap-2 text-sm">
             <span>Have an account?</span>
