@@ -10,7 +10,7 @@ function Header() {
   const { currentUser } = useSelector((state) => state.user);
   const { theme } = useSelector((state) => state.theme);
   const dispatch = useDispatch();
-
+//  console.log(currentUser?.profilePicture, currentUser.username)
   return (
     <Navbar className="border-b-2">
       <Link
