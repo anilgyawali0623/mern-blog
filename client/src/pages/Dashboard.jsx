@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DashSidebar from "../components/DashSidebar";
+import DashProfile from "../components/DashProfile";
 
 function Dashboard() {
   const location = useLocation();
-  const [subTab, setSubTab] = useState("");
+  const [tab, setSubTab] = useState("");
   useEffect(() => {
     // location.search give the string of the url  urlParams helps to perform
     const urlParams = new URLSearchParams(location.search);
@@ -24,7 +25,7 @@ function Dashboard() {
         <DashSidebar />
         
       </div>
-      
+      {tab==="profile" && <DashProfile/>}
     </div>
   );
 }
