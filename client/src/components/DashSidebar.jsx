@@ -25,15 +25,14 @@ function DashSidebar() {
             icon={HiUser}
             label={"user"}
             labelColor="dark"
+             as="button"
             >
             Profile
           </Sidebar.Item>
             </Link>
-             <Link to='/dashboard?tab=signout'>
           <Sidebar.Item icon={HiArrowSmRight} className="cursor-pointer">
             Sign out
           </Sidebar.Item>
-             </Link>
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>
