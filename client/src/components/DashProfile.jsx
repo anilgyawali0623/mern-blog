@@ -16,8 +16,12 @@ function DashProfile() {
   const { currentUser } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
+  const [updateUserSuccess, setUpdateUserSuccess] = useState(null);
+  const [updateUserError, setUpdateUserError] = useState(null);
+
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(0);
   const [imageFileUploadError, setImageFileUploadError] = useState(null);
+  const [imageFileUploading, setImageFileUploading] = useState(false);
   const filePickerRef = useRef();
   const [formData, setFormData] = useState({});
   const dispatch = useDispatch();
@@ -36,6 +40,7 @@ function DashProfile() {
   }, [imageFile]);
 
   const uploadImage = async function () {
+    setImageFileUploading(true);
     setImageFileUploadError(null);
     const storage = getStorage(app);
     //   if the user click the same at the two time then there is the chance of getting an error or name should be unique so date is used
@@ -56,11 +61,13 @@ function DashProfile() {
         setImageFileUploadProgress(null);
         setImageFile(null);
         setImageFileUrl(null);
+        setImageFileUploading(false);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImageFileUrl(downloadURL);
           setFormData({ ...formData, profilePicture: downloadURL });
+          setImageFileUploading(false);
         });
       }
     );
@@ -68,10 +75,18 @@ function DashProfile() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
-   console.log(currentUser._id)
+  console.log(currentUser._id);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setUpdateUserError(null);
+    setUpdateUserSuccess(null);
     if (Object.keys(formData).length === 0) {
+      setUpdateUserError("no changes made");
+      return;
+    }
+    if (imageFileUploading) {
+      setUpdateUserError("please wait image is uploading...");
+
       return;
     }
     try {
@@ -79,20 +94,23 @@ function DashProfile() {
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-         console.log(res)
-       const data=  await res.json();
- console.log(data)
-        if(!res.ok){
-           dispatch(updateFailure(data.message));
-        }else{
-           dispatch(updateSuccess(data));
-        }
+      console.log(res);
+      const data = await res.json();
+      console.log(data);
+      if (!res.ok) {
+        dispatch(updateFailure(data.message));
+        setUpdateUserError(data.message);
+      } else {
+        dispatch(updateSuccess(data));
+        setUpdateUserSuccess("user profile updated successfully");
+      }
     } catch (error) {
- dispatch(updateFailure(error.message))
+      dispatch(updateFailure(error.message));
+      setUpdateUserError(error.message);
     }
   };
 
@@ -171,6 +189,16 @@ function DashProfile() {
         <span className="cursor-pointer">Delete Account</span>
         <span className="cursor-pointer">Sign out</span>
       </div>
+      {updateUserSuccess && (
+        <Alert color="success" className="mt-5">
+          {updateUserSuccess}
+        </Alert>
+      )}
+      {updateUserError && (
+        <Alert color="failure" className="mt-5">
+          {updateUserError}
+        </Alert>
+      )}
     </div>
   );
 }
