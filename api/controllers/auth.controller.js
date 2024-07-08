@@ -70,11 +70,13 @@ export const google = async (req, res, next) => {
   const { email, name, googlePhotoUrl } = req.body;
   try {
     const user = await User.findOne({ email });
+    console.log(user)
     if (user) {
       const token = jwt.sign(
         { id: user._id, isAdmin: user.isAdmin },
         process.env.JWT_SECRET
       );
+       console.log(token)
       const { password, ...rest } = user._doc;
       res
         .status(200)
