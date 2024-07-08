@@ -8,7 +8,7 @@ export const test = (req, res) => {
 export const updateUser = async (req, res, next) => {
   //  now we will check if the id will match or the
   if (req.user.id !== req.params.userId) {
-    return next(errorHandler(403, "you are not allowed to do that"));
+    return next(errorHandler(400, "you are not allowed to do that"));
   }
   if (req.body.password) {
     if (req.body.password.length < 6) {
