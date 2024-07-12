@@ -4,6 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { signInFailure, signInSuccess, signInStart } from "../user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import OAuth from "../components/OAuth";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function Signin() {
   const [formData, setFormData] = useState({});
   const { loading, error: errorMessage } = useSelector((state) => state.user);
@@ -11,14 +14,14 @@ function Signin() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value.trim()});
+    setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
     console.log(formData);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.email || !formData.password) {
-      return dispatch(signInFailure("please fill abkjbolv,cmll the fields"))
+      return dispatch(signInFailure("please fill abkjbolv,cmll the fields"));
     }
     try {
       dispatch(signInStart());
@@ -31,7 +34,7 @@ function Signin() {
       if (data.success === false) {
         return dispatch(signInFailure(data.message));
       }
-     
+
       if (res.ok) {
         dispatch(signInSuccess(data));
         navigate("/");
@@ -49,9 +52,9 @@ function Signin() {
               className="px-2 py-1 bg-gradient-to-r
              from-indigo-500 via-purple-500 to-pink-500 rounded-lg text-white"
             >
-              Anil
+              News
             </span>
-            Blog
+            Website
           </Link>
           <p className="text-sm mt-5 ">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa
@@ -93,7 +96,7 @@ function Signin() {
                 "Sign In"
               )}
             </Button>
-             <OAuth/>
+            <OAuth />
           </form>
           <div className="mt-5 flex gap-2 text-sm">
             <span> dont have an account?</span>
