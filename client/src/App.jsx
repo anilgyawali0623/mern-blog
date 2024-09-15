@@ -15,6 +15,7 @@ import UpdatePost from "./pages/UpdatePost";
 import LoadingBar from "react-top-loading-bar";
 import { useSelector } from "react-redux";
 import PostPage from './pages/PostPage';
+import ScrollToTop from './components/ScrollToTop';
 function App() {
   // const progress = useSelector((state)=> state.home.progress);
 
@@ -27,6 +28,7 @@ function App() {
           shadow={true}
       />
          */}
+         <ScrollToTop />
     <Header/>
       <Routes>
         <Route path="/" element={<Home />} />
