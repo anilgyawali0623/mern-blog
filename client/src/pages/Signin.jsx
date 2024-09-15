@@ -57,8 +57,7 @@ function Signin() {
             Website
           </Link>
           <p className="text-sm mt-5 ">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa
-            consequatur repudiandae quae
+             welcome to the page
           </p>
         </div>
         <div className="flex-1">

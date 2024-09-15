@@ -3,6 +3,9 @@ const initialState = {
   currentUser: null,
   error: null,
   loading: false,
+  url: {},
+  category: {},
+  progress: Number,
 };
 
 const userSlice = createSlice({
@@ -52,6 +55,15 @@ const userSlice = createSlice({
       state.error = null;
       state.loading = false;
     },
+    getApiConfiguration: (state, action) => {
+      state.url = action.payload;
+    },
+    getCategory: (state, action) => {
+      state.category = action.payload;
+    },
+    getProgress: (state, action) => {
+      state.progress = action.payload;
+    },
   },
 });
 
@@ -65,6 +77,9 @@ export const {
   deleteUserStart,
   deleteUserSuccess,
   deleteUserFailure,
-   signoutSuccess
+  signoutSuccess,
+  getApiConfiguration,
+  getCategory,
+  getProgress,
 } = userSlice.actions;
 export default userSlice.reducer;

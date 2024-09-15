@@ -1,0 +1,18 @@
+button {
+    font-size: 16px;
+    padding-inline: 20px;
+     border-radius: 10px;
+    padding-block: 8px;
+     background-color: #ffa400;
+      border: none;
+       outline: none;
+     cursor: pointer;
+  
+   transition: 0.3s all ease;
+  
+  }
+  
+  
+   button:hover{
+      opacity: 0.84;
+   }

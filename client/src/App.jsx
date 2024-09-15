@@ -12,9 +12,20 @@ import PrivateRoute from "./components/PrivateRoute";
  import OnlyAdminPrivateRoute from "./components/OnlyAdminPrivateRoute ";
   import CreatePost from "./pages/CreatePost";
 import UpdatePost from "./pages/UpdatePost";
+import LoadingBar from "react-top-loading-bar";
+import { useSelector } from "react-redux";
 function App() {
+  // const progress = useSelector((state)=> state.home.progress);
+
   return (
     <BrowserRouter>
+     {/* <LoadingBar
+        color="#ed092c"
+        progress={progress}
+        height={4}
+          shadow={true}
+      />
+         */}
     <Header/>
       <Routes>
         <Route path="/" element={<Home />} />

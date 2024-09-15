@@ -1,0 +1,84 @@
+.card {
+    width: 300px;
+    height: 340px;
+    /* background-color: red; */
+    margin: 23px;
+    border-top-left-radius: 20px;
+    overflow: hidden;
+    border-top-right-radius: 20px;
+    border: 1px solid pink;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  .card-image {
+    max-height: 50%;
+    min-height: 50%;
+    cursor: pointer;
+    width: 100%;
+    background-color: black;
+    overflow: hidden;
+  }
+  .card .card-image img{
+     height: 100%;
+      width: 100%;
+       transition: 0.4s all ease-in-out;
+  }
+  
+  .card .card-image img:hover{
+     transform: scale(1.2);
+  }
+  
+  
+  
+  .card-info {
+    /* margin: 7px; */
+    margin-top: 10px;
+    margin-left: 4px;
+    flex-direction: column;
+    display: flex;
+    /* background-color: pink; */
+    height: max-content;
+  }
+  
+  .info-content {
+    height: fit-content;
+    /* background-color: pink; */
+  }
+  
+  .card-info p {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 15px;
+  }
+  
+  .card-info .info-content p span {
+    color: read;
+    cursor: pointer;
+  }
+  
+  .card-info .info-content p span:hover {
+    text-decoration: underline;
+  }
+  
+  .card-info span {
+    font-size: 12px;
+  }
+  
+  .card-info .inner-info {
+    position: relative;
+    /* bottom: 5px; */
+    justify-content: space-between;
+    margin-right: 16px;
+  }
+  .card-info .inner-info span {
+    font-size: 14px;
+  }
+  
+  .card-button {
+    text-align: center;
+    position: relative;
+    top: 13px;
+    right: 10px;
+  }
+  
