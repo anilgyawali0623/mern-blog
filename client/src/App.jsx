@@ -14,6 +14,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import UpdatePost from "./pages/UpdatePost";
 import LoadingBar from "react-top-loading-bar";
 import { useSelector } from "react-redux";
+import PostPage from './pages/PostPage';
 function App() {
   // const progress = useSelector((state)=> state.home.progress);
 
@@ -42,6 +43,7 @@ function App() {
         </Route>
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/projects" element={<Projects />} />
+        <Route path='/post/:postSlug' element={<PostPage />} />
       </Routes>
        <Footer/>
     </BrowserRouter>
