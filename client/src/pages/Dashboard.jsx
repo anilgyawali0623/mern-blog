@@ -4,13 +4,14 @@ import DashSidebar from "../components/DashSidebar";
 import DashProfile from "../components/DashProfile";
 import DashPosts from "../components/DashPosts";
 import DashUsers from "../components/DashUsers";
+import DashComments from "../components/DashComments";
 function Dashboard() {
   const location = useLocation();
   const [tab, setSubTab] = useState("");
   useEffect(() => {
     // location.search give the string of the url  urlParams helps to perform
     const urlParams = new URLSearchParams(location.search);
-     console.log(urlParams)
+    console.log(urlParams);
     // tab= paxi j lekhxam tyo yesma aahuxa
     const tabFromUrl = urlParams.get("tab");
     console.log(tabFromUrl);
@@ -22,13 +23,13 @@ function Dashboard() {
     <div className=" min-h-screen flex flex-col md:flex-row">
       <div className="md:w-56">
         {/* Sidebar */}
-        
+
         <DashSidebar />
-        
       </div>
-      {tab==="profile" && <DashProfile/>}
-      {tab === 'posts' && <DashPosts />}
-    {tab==='users' && <DashUsers/>}
+      {tab === "profile" && <DashProfile />}
+      {tab === "posts" && <DashPosts />}
+      {tab === "users" && <DashUsers />}
+      {tab === "comments" && <DashComments />}
     </div>
   );
 }
