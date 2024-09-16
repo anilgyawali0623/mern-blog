@@ -92,7 +92,7 @@ function Signin() {
                 // rightIcon={FiEye}
                 
                 />
-                 <div className="icon" style={{position:"absolute",top:"12px", right:"5px", cursor:"pointer"}}    onClick={togglePasswordVisibility}> {showPassword ? <FiEyeOff /> : <FiEye />}</div>
+                 <div className="icon" style={{position:"absolute",top:"12px", right:"5px", cursor:"pointer"}}    onClick={togglePasswordVisibility}> {showPassword ? <FiEye /> : <FiEyeOff />}</div>
                 </div>
                
             </div>
