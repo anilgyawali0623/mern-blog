@@ -1,16 +1,21 @@
-import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
+import { Alert, Button, Label, Spinner, TextInput, Popover } from "flowbite-react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInFailure, signInSuccess, signInStart } from "../user/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import OAuth from "../components/OAuth";
+import { FiEyeOff ,FiEye } from "react-icons/fi";
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function Signin() {
   const [formData, setFormData] = useState({});
   const { loading, error: errorMessage } = useSelector((state) => state.user);
+  const [showPassword, setShowPassword] = useState(false);
 
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -74,13 +79,25 @@ function Signin() {
 
             <div className="">
               <Label value="Your Password " />
+                  <div className="icons"style={{
+                    position:"relative",
+                     height:"100%"
+                  }}>
+
               <TextInput
-                type="password"
+                type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 id="password"
                 onChange={handleChange}
-              />
+                // rightIcon={FiEye}
+                
+                />
+                 <div className="icon" style={{position:"absolute",top:"12px", right:"5px", cursor:"pointer"}}    onClick={togglePasswordVisibility}> {showPassword ? <FiEyeOff /> : <FiEye />}</div>
+                </div>
+               
             </div>
+            
+          
             <Button
               gradientDuoTone="purpleToPink"
               type="submit"

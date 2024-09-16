@@ -1,12 +1,18 @@
 import { Alert, Button, Label, Spinner, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { FiEyeOff ,FiEye } from "react-icons/fi";
 import OAuth from "../components/OAuth";
 function Signup() {
   const [formData, setFormData] = useState({});
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
     console.log(formData);
@@ -80,12 +86,22 @@ function Signup() {
 
             <div className="">
               <Label value="Your Password " />
+              <div className="icons"style={{
+                    position:"relative",
+                     height:"100%"
+                  }}>
+
               <TextInput
-                type="text"
+                type={showPassword ? "text" : "password"}
                 placeholder="Password"
                 id="password"
                 onChange={handleChange}
-              />
+                // rightIcon={FiEye}
+                
+                />
+                 <div className="icon" style={{position:"absolute",top:"12px", right:"5px", cursor:"pointer"}}    onClick={togglePasswordVisibility}> {showPassword ? <FiEyeOff /> : <FiEye />}</div>
+                </div>
+               
             </div>
             <Button
               gradientDuoTone="purpleToPink"
@@ -111,7 +127,7 @@ function Signup() {
           </div>
           {errorMessage && (
             <Alert className="mt-5" color="failure">
-              {errorMessage}
+                fail to connect.
             </Alert>
           )}
         </div>

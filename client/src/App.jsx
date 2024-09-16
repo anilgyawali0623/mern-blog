@@ -14,6 +14,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import UpdatePost from "./pages/UpdatePost";
 import LoadingBar from "react-top-loading-bar";
 import { useSelector } from "react-redux";
+import Search from './pages/Search';
 import PostPage from './pages/PostPage';
 import ScrollToTop from './components/ScrollToTop';
 function App() {
@@ -44,6 +45,7 @@ function App() {
 
         </Route>
         <Route path="/sign-up" element={<Signup />} />
+        <Route path='/search' element={<Search />} />
         <Route path="/projects" element={<Projects />} />
         <Route path='/post/:postSlug' element={<PostPage />} />
       </Routes>
