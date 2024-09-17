@@ -97,6 +97,16 @@ function CreatePost() {
               setFormData({ ...formData, title: e.target.value })
             }
           />
+           <TextInput
+            type="text"
+            placeholder="author"
+            required
+            id="author"
+            className="flex-1"
+            onChange={(e) =>
+              setFormData({ ...formData, author: e.target.value })
+            }
+          />
           <Select
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
@@ -159,7 +169,7 @@ function CreatePost() {
         </Button>
         {publishError && (
           <Alert className="mt-5" color="failure">
-            {publishError}
+             some problem has arise fill again.
           </Alert>
         )}
       </form>
